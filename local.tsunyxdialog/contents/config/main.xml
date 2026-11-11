@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<kcfg xmlns="http://www.kde.org/standards/kcfg/1.0"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.kde.org/standards/kcfg/1.0
+      http://www.kde.org/standards/kcfg/1.0/kcfg.xsd">
+    <kcfgfile name=""/>
+
+    <group name="General">
+        <entry name="icon" type="String">
+            <label>The name of the icon to use for the panel button.</label>
+            <default>start-here-kde-symbolic</default>
+        </entry>
+        <entry name="iconSize" type="Int">
+            <label>Size in pixels of the app icons in the grid.</label>
+            <default>96</default>
+        </entry>
+        <entry name="showPageIndicator" type="Bool">
+            <label>Show the page dots at the bottom of the grid.</label>
+            <default>true</default>
+        </entry>
+        <entry name="pagedMode" type="Bool">
+            <label>Paginate the all-apps grid (swipe between pages) instead of one continuous vertically-scrolling list.</label>
+            <default>true</default>
+        </entry>
+    </group>
+</kcfg>

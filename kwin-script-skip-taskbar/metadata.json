@@ -1,0 +1,12 @@
+{
+    "KPackageStructure": "KWin/Script",
+    "KPlugin": {
+        "Id": "tsunyxlauncherskiptaskbar",
+        "Name": "Tsunyx Launcher: Skip Taskbar",
+        "Description": "Keeps the Tsunyx Launcher dashboard window out of the taskbar/pager/switcher, and stretches it over the whole screen as a normal window so the panel is drawn on top of its background (GNOME dash style) regardless of any other reserved screen space.",
+        "Category": "Window Management",
+        "License": "GPL-3.0-or-later",
+        "EnabledByDefault": true
+    },
+    "X-Plasma-API": "javascript"
+}

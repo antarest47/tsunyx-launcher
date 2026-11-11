@@ -1,0 +1,23 @@
+{
+    "KPackageStructure": "Plasma/Applet",
+    "KPlugin": {
+        "Authors": [
+            {
+                "Email": "285864120+antarest47@users.noreply.github.com",
+                "Name": "emi"
+            }
+        ],
+        "Name": "Tsunyx Launcher",
+        "Id": "local.tsunyxlauncher",
+        "Version": "1.13.3",
+        "Category": "Application Launchers",
+        "Description": "A fullscreen, paginated grid application launcher inspired by GNOME's App Grid",
+        "License": "GPL-3.0-or-later",
+        "Icon": "start-here-kde",
+        "EnabledByDefault": true
+    },
+    "X-Plasma-Provides": [
+        "org.kde.plasma.launchermenu"
+    ],
+    "X-Plasma-API-Minimum-Version": "6.0"
+}

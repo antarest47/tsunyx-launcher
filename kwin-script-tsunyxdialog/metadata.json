@@ -1,0 +1,11 @@
+{
+    "KPackageStructure": "KWin/Script",
+    "KPlugin": {
+        "Id": "tsunyxdialogcenter",
+        "Name": "Tsunyx Launcher (Dialog): Center + Skip Taskbar",
+        "Description": "Centers the Tsunyx Launcher (Dialog) fork's fixed-size window on screen and keeps it out of the taskbar/pager/switcher. Needed because a Wayland client cannot position its own toplevel window (x/y bindings in QML are silently ignored) and PlasmaCore.Dialog does not hide itself from the taskbar the way Kicker.DashboardWindow does.",
+        "Category": "Window Management",
+        "License": "GPL-3.0-or-later"
+    },
+    "X-Plasma-API": "javascript"
+}

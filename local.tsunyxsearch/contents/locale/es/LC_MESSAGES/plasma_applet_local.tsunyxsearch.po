@@ -1,0 +1,28 @@
+# Spanish translation for Tsunyx Search
+# Traducción al español del cuadro de búsqueda Tsunyx Search para KDE Plasma
+msgid ""
+msgstr ""
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: es\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+msgctxt "@info:placeholder"
+msgid "Search or run a command…"
+msgstr "Buscá o ejecutá un comando…"
+
+msgctxt "@action run in a terminal"
+msgid "Run in terminal: %1"
+msgstr "Ejecutar en la terminal: %1"
+
+msgctxt "@title:group search results"
+msgid "Timer"
+msgstr "Temporizador"
+
+msgctxt "@action %1 a duration"
+msgid "Start a %1 timer"
+msgstr "Iniciar temporizador de %1"
+
+msgctxt "@action %1 a duration, %2 its name"
+msgid "Start a %1 timer: %2"
+msgstr "Iniciar temporizador de %1: %2"

@@ -1,0 +1,21 @@
+{
+    "KPackageStructure": "Plasma/Applet",
+    "KPlugin": {
+        "Authors": [
+            {
+                "Email": "285864120+antarest47@users.noreply.github.com",
+                "Name": "emi"
+            }
+        ],
+        "Category": "Application Launchers",
+        "Description": "Panel search box: find apps and files like Tsunyx Launcher, or run terminal commands",
+        "Description[es]": "Cuadro de búsqueda para el panel: busca aplicaciones y archivos como Tsunyx Launcher, o ejecuta comandos de terminal",
+        "EnabledByDefault": true,
+        "Icon": "search",
+        "Id": "local.tsunyxsearch",
+        "License": "GPL-3.0-or-later",
+        "Name": "Tsunyx Search",
+        "Version": "1.13.3"
+    },
+    "X-Plasma-API-Minimum-Version": "6.0"
+}

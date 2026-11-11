@@ -1,0 +1,23 @@
+# Compiled gettext catalogs — derived from the .po sources, and installed
+# outside this repo anyway (~/.local/share/locale/...), never actually
+# belong here even if msgfmt gets pointed at the wrong output path by hand.
+*.mo
+
+# Qt/QML bytecode caches, generated locally by qmlcachegen/the QML engine.
+*.qmlc
+*.jsc
+
+# Dolphin per-folder view settings.
+.directory
+
+# Editor/OS cruft.
+*~
+*.swp
+.DS_Store
+
+# Debian package build output.
+build/
+
+# Internal development notes: kept locally (and in the archive branch on the
+# private server), not published.
+CONTEXT.md

@@ -1,0 +1,22 @@
+{
+    "KPackageStructure": "Plasma/Applet",
+    "KPlugin": {
+        "Authors": [{
+            "Email": "285864120+antarest47@users.noreply.github.com",
+                "Name": "emi"
+        }],
+
+        "Name": "Tsunyx Launcher (Dialog)",
+        "Id": "local.tsunyxdialog",
+        "Version": "1.0",
+
+        "Category": "Application Launchers",
+        "Description": "Experimental fixed-size, custom-bordered popup variant of Tsunyx Launcher built on PlasmaCore.Dialog instead of Kicker.DashboardWindow",
+        "License": "GPL-3.0-or-later",
+        "Icon": "start-here-kde",
+
+        "EnabledByDefault": true
+    },
+    "X-Plasma-Provides": ["org.kde.plasma.launchermenu"],
+    "X-Plasma-API-Minimum-Version": "6.0"
+}

@@ -1,0 +1,22 @@
+Package: tsunyx-launcher
+Version: @VERSION@
+Section: x11
+Priority: optional
+Architecture: all
+Maintainer: emi <285864120+antarest47@users.noreply.github.com>
+Depends: plasma-workspace (>= 4:6.3), qml6-module-org-kde-plasma-workspace, kwin-wayland (>= 4:6.3), qml6-module-org-kde-plasma-plasma5support, qml6-module-org-kde-taskmanager | plasma-workspace (<< 4:6.4)
+Recommends: konsole, uzunyx-timer
+Description: GNOME-style fullscreen app grid launcher and panel search box for Plasma
+ Plasma 6 panel widget (local.tsunyxlauncher) with a big paginated icon
+ grid, live categorized search, keyboard navigation and a Spanish
+ translation. It covers the screen except the panel and opens with the
+ Super key like any other Plasma launcher.
+ .
+ Includes the "Tsunyx Launcher: Skip Taskbar" KWin script, enabled by
+ default, which keeps the launcher window out of the taskbar, pager and
+ window switcher.
+ .
+ Also ships Tsunyx Search (local.tsunyxsearch), a search box that sits in
+ the panel: it finds apps, files and more like Tsunyx Launcher and, when
+ KRunner recognizes the text as a terminal command, runs it in Konsole,
+ which stays open afterwards.

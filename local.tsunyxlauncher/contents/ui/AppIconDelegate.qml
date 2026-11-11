@@ -1,0 +1,157 @@
+import QtQuick
+import QtQuick.Window
+import org.kde.kirigami as Kirigami
+
+// A single GNOME-style app icon: big icon + label below, soft rounded
+// highlight on hover/focus, no drop shadow, no background when idle.
+Item {
+    id: delegate
+
+    property alias iconSource: appIcon.source
+    property alias label: appLabel.text
+    property int iconSize: 64
+
+    signal activated()
+    signal contextMenuRequested(real x, real y)
+    signal mouseMoved()
+
+    // "current" is driven externally by AppGridPage's keyboard-navigation
+    // cursor, independent of the mouse — that's what makes arrow-key
+    // navigation visible even when the pointer isn't over this icon.
+    property alias hovered: mouseArea.containsMouse
+    property bool current: false
+
+    // containsMouse reads true immediately if this icon merely appears under
+    // an already-stationary cursor (Qt synthesizes a hover recalculation
+    // even with zero physical movement — onPositionChanged fires for that
+    // too, so it can't be used to detect "real" movement either). Whether
+    // hover should count at all is decided by the caller (ultimately by
+    // comparing actual cursor coordinates against a baseline — see
+    // TsunyxDashboard.qml's mouseNavActive) and passed in here.
+    property bool mouseNavActive: true
+    property bool highlighted: (hovered && mouseNavActive) || current
+
+    // Opening and closing the launcher (its revealProgress going 0 -> 1 or
+    // back, linearly): this icon flies from the panel button to its place,
+    // growing on the way, eased over its own share of that clock. Icons far
+    // from the button start up to maxDelay later, so a wave leaves the
+    // button; on close the far ones go back first. Reached through the
+    // window: this file can't see TsunyxDashboard.qml's ids. Search results
+    // use this delegate too, but they only appear once it's fully open.
+    readonly property var dashboard: Window.window
+    readonly property real revealProgress: dashboard && dashboard.revealProgress !== undefined
+        ? dashboard.revealProgress : 1
+    readonly property real maxDelay: 0.45
+    property point flyFrom: Qt.point(0, 0)
+    property real flyDelay: 0
+    readonly property real flyProgress: {
+        const t = Math.max(0, Math.min(1, (revealProgress - flyDelay) / (1 - maxDelay)));
+        return 1 - Math.pow(1 - t, 3); // Easing.OutCubic
+    }
+
+    function updateFly() {
+        if (!dashboard || dashboard.flyOrigin === undefined || !parent) {
+            return;
+        }
+        // Through the parent: mapToItem() on this item would include its own
+        // fly transform, which after a close leaves it sitting on the button
+        // (every other open would then find no distance to fly).
+        const centre = parent.mapToItem(null, x + width / 2, y + height / 2);
+        flyFrom = Qt.point(dashboard.flyOrigin.x - centre.x, dashboard.flyOrigin.y - centre.y);
+        // Spread over 30-70 % of the screen diagonal away from the button.
+        const distance = Math.hypot(flyFrom.x, flyFrom.y) / dashboard.flyMaxDistance;
+        flyDelay = maxDelay * Math.max(0, Math.min(1, (distance - 0.3) / 0.4));
+    }
+
+    Connections {
+        target: delegate.dashboard
+        ignoreUnknownSignals: true
+        function onFlyGenerationChanged() {
+            delegate.updateFly();
+        }
+    }
+    Component.onCompleted: updateFly()
+
+    transform: [
+        Scale {
+            origin.x: delegate.width / 2
+            origin.y: delegate.height / 2
+            xScale: 0.15 + 0.85 * delegate.flyProgress
+            yScale: 0.15 + 0.85 * delegate.flyProgress
+        },
+        Translate {
+            x: (1 - delegate.flyProgress) * delegate.flyFrom.x
+            y: (1 - delegate.flyProgress) * delegate.flyFrom.y
+        }
+    ]
+
+    Accessible.role: Accessible.Button
+    Accessible.name: label
+
+    Rectangle {
+        id: highlight
+
+        anchors.centerIn: appIcon
+        width: appIcon.width + Kirigami.Units.largeSpacing * 2
+        height: appIcon.width + Kirigami.Units.largeSpacing * 2
+        radius: Kirigami.Units.cornerRadius * 3
+        color: Kirigami.Theme.textColor
+        opacity: delegate.highlighted ? 0.15 : 0.0
+
+        Behavior on opacity {
+            NumberAnimation { duration: Kirigami.Units.shortDuration }
+        }
+    }
+
+    Kirigami.Icon {
+        id: appIcon
+
+        anchors.top: parent.top
+        anchors.topMargin: Kirigami.Units.largeSpacing
+        anchors.horizontalCenter: parent.horizontalCenter
+        width: delegate.iconSize
+        height: width
+
+        scale: mouseArea.pressed ? 0.92 : 1.0
+        Behavior on scale {
+            NumberAnimation { duration: Kirigami.Units.shortDuration; easing.type: Easing.OutCubic }
+        }
+    }
+
+    Text {
+        id: appLabel
+
+        anchors {
+            top: appIcon.bottom
+            topMargin: Kirigami.Units.smallSpacing
+            left: parent.left
+            right: parent.right
+        }
+
+        horizontalAlignment: Text.AlignHCenter
+        elide: Text.ElideRight
+        maximumLineCount: 2
+        wrapMode: Text.Wrap
+        color: "white"
+        font.pointSize: Kirigami.Theme.defaultFont.pointSize
+    }
+
+    MouseArea {
+        id: mouseArea
+
+        anchors.fill: parent
+        hoverEnabled: true
+        acceptedButtons: Qt.LeftButton | Qt.RightButton
+        cursorShape: Qt.PointingHandCursor
+
+        onPositionChanged: delegate.mouseMoved()
+
+        onClicked: mouse => {
+            if (mouse.button === Qt.RightButton) {
+                delegate.contextMenuRequested(mouse.x, mouse.y);
+            } else {
+                delegate.activated();
+            }
+        }
+    }
+}

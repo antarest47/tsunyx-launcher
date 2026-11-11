@@ -1,0 +1,81 @@
+# Spanish translation for Tsunyx Launcher
+# Traducción al español del lanzador Tsunyx Launcher para KDE Plasma
+msgid ""
+msgstr ""
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: es\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+msgctxt "@info:placeholder"
+msgid "Search or run a command…"
+msgstr "Buscá o ejecutá un comando…"
+
+msgid "Edit Applications…"
+msgstr "Editar aplicaciones…"
+
+msgid "Add to Favorites"
+msgstr "Agregar a favoritos"
+
+msgid "Remove from Favorites"
+msgstr "Quitar de favoritos"
+
+msgid "General"
+msgstr "General"
+
+msgid "Icon size:"
+msgstr "Tamaño de icono:"
+
+msgid "%1 px"
+msgstr "%1 px"
+
+msgid "Background dim:"
+msgstr "Oscurecido de fondo:"
+
+msgid "Page dots:"
+msgstr "Puntos de página:"
+
+msgid "Show page indicator"
+msgstr "Mostrar indicador de página"
+
+msgid "Panel icon:"
+msgstr "Icono del panel:"
+
+msgctxt "@item:inmenu Open icon chooser dialog"
+msgid "Choose…"
+msgstr "Elegir…"
+
+msgctxt "@item:inmenu Reset icon to default"
+msgid "Reset to default"
+msgstr "Restablecer al predeterminado"
+
+msgid "Layout:"
+msgstr "Diseño:"
+
+msgid "Paginate the grid (uncheck for a scrolling list)"
+msgstr "Paginar la grilla (desmarcar para una lista con desplazamiento)"
+
+msgctxt "@title:group search results"
+msgid "Run in terminal"
+msgstr "Ejecutar en la terminal"
+
+msgid "Open and close:"
+msgstr "Abrir y cerrar:"
+
+msgid "Icons fly out of the panel button"
+msgstr "Los iconos salen volando del botón del panel"
+
+msgid "Magic lamp (needs the Genie Anywhere desktop effect)"
+msgstr "Lámpara mágica (necesita el efecto de escritorio Lámpara mágica libre)"
+
+msgctxt "@title:group search results"
+msgid "Timer"
+msgstr "Temporizador"
+
+msgctxt "@action %1 a duration"
+msgid "Start a %1 timer"
+msgstr "Iniciar temporizador de %1"
+
+msgctxt "@action %1 a duration, %2 its name"
+msgid "Start a %1 timer: %2"
+msgstr "Iniciar temporizador de %1: %2"

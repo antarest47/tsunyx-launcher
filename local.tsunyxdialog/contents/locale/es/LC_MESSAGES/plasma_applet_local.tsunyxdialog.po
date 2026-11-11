@@ -1,0 +1,53 @@
+# Spanish translation for Tsunyx Launcher
+# Traducción al español del lanzador Tsunyx Launcher para KDE Plasma
+msgid ""
+msgstr ""
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: es\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+msgctxt "@info:placeholder"
+msgid "Type to search…"
+msgstr "Escribí para buscar…"
+
+msgid "Edit Applications…"
+msgstr "Editar aplicaciones…"
+
+msgid "Add to Favorites"
+msgstr "Agregar a favoritos"
+
+msgid "Remove from Favorites"
+msgstr "Quitar de favoritos"
+
+msgid "General"
+msgstr "General"
+
+msgid "Icon size:"
+msgstr "Tamaño de icono:"
+
+msgid "%1 px"
+msgstr "%1 px"
+
+msgid "Page dots:"
+msgstr "Puntos de página:"
+
+msgid "Show page indicator"
+msgstr "Mostrar indicador de página"
+
+msgid "Panel icon:"
+msgstr "Icono del panel:"
+
+msgctxt "@item:inmenu Open icon chooser dialog"
+msgid "Choose…"
+msgstr "Elegir…"
+
+msgctxt "@item:inmenu Reset icon to default"
+msgid "Reset to default"
+msgstr "Restablecer al predeterminado"
+
+msgid "Layout:"
+msgstr "Diseño:"
+
+msgid "Paginate the grid (uncheck for a scrolling list)"
+msgstr "Paginar la grilla (desmarcar para una lista con desplazamiento)"
