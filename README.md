@@ -1,58 +1,79 @@
 # Tsunyx Launcher
 
-A GNOME Activities-style application launcher for KDE Plasma 6: a big paginated
-icon grid with live search, opened from a panel button (or a keyboard
-shortcut). Built because the launchers already available for Plasma — Kicker,
-Kickoff, FairyWren, etc. — are all popup/list style, and none of them give you
-a full grid you can page through the way GNOME's app grid does.
+Un lanzador de aplicaciones para KDE Plasma 6 al estilo de las Actividades de GNOME:
+una cuadrícula grande de iconos, por páginas, con búsqueda en vivo, que se abre desde
+un botón del panel (o con un atajo de teclado). Nació porque los lanzadores que ya
+había para Plasma (Kicker, Kickoff, FairyWren…) son menús emergentes o listas, y
+ninguno da una cuadrícula completa que se recorra por páginas como la de GNOME.
 
-This repo ships **two variants** that install side by side, sharing the same
-grid/search code but with a different window:
+Es parte de [Uzunyx](https://github.com/antarest47/uzunyx), pero funciona en
+cualquier Plasma 6.
 
-- **Tsunyx Launcher** (`local.tsunyxlauncher`) — the original. Its background
-  covers the whole screen, with the panel drawn on top of it (like GNOME's
-  dash over the app grid) and the grid kept clear of the panel, and stays out of the taskbar/pager/window-switcher like any other
-  launcher menu would.
-- **Tsunyx Launcher (Dialog)** (`local.tsunyxdialog`) — a fixed-size
-  (1490x990 physical pixels), custom-bordered floating window instead of a
-  fullscreen one, for a more traditional popup-window feel. Its border is
-  hand-drawn QML (matching the accent color from your active color scheme),
-  not real window decoration — `PlasmaCore.Dialog`, which this variant is
-  built on, can't get real decoration from KWin no matter what.
+## Hecho con IA
 
-## Features
+Tsunyx está hecho con inteligencia artificial, y quiero que quede claro desde el
+principio. No soy desarrollador/a: tengo las ideas, decido cómo se ve y cómo se
+comporta cada cosa, y lo pruebo. El código lo escribió Claude (Anthropic), con Claude
+Code, a partir de esas decisiones.
 
-- Full-screen paginated app grid — swipe (touchpad), scroll, arrow keys, or
-  the page dots to move between pages — or switch to a single continuous
-  scrolling list instead, from the settings.
-- Live search as you type, no need to click into a field first — results are
-  grouped by category (Applications, Files, Web Bookmarks, Browser Tabs...)
-  the same way KRunner groups them.
-- Terminal commands, like Tsunyx Search below: if KRunner recognizes the text
-  as a command, a "Run in terminal" result goes first (unless some result's
-  name starts with what was typed) and runs it in a terminal that stays open
-  (`terminalCommand`, default `konsole`).
-- Full keyboard navigation, including across pages and search-result
-  sections.
-- Right-click context menu on any icon (add/remove favorite, and whatever
-  actions the app itself provides).
-- Open/close animation: the app icons fly out of the panel button in a wave (and back on
-  close), with the dimmed, blurred background fading in and out.
-- Configurable panel icon, grid icon size, and whether the grid is paginated
-  or a scrolling list (Tsunyx Launcher also lets you configure the
-  background dim — not applicable to the Dialog variant, which has no
-  fullscreen background to dim).
-- Interface localized to Spanish (falls back to English otherwise).
+Todo se probó en mi PC y en máquinas virtuales, pero nadie lo revisó como lo haría un
+equipo de desarrollo, ni hubo una auditoría de seguridad. Si lo vas a usar, pruébalo
+primero en una máquina o partición que no te importe. Como dice la licencia, se
+entrega sin garantías. Si encuentras un error, abre un Issue.
 
-## Requirements
+## Dos variantes
 
-- KDE Plasma 6.0+, Qt 6.8+, on Wayland or X11.
-- `msgfmt` (from `gettext`) — only needed once, to build the Spanish
-  translation catalog.
-- `kpackagetool6` and `kwriteconfig6` — ship with any standard Plasma 6
-  install, used to install the companion KWin script (see below).
+Este repositorio trae **dos variantes** que se instalan una al lado de la otra.
+Comparten el código de la cuadrícula y la búsqueda, pero cambian la ventana:
 
-## Installing
+- **Tsunyx Launcher** (`local.tsunyxlauncher`), la original. Su fondo cubre toda la
+  pantalla, con el panel dibujado encima (como el dash de GNOME sobre la cuadrícula
+  de apps) y la cuadrícula apartada del panel. Como cualquier menú de lanzador, no
+  aparece en la barra de tareas, el paginador ni el selector de ventanas.
+- **Tsunyx Launcher (Dialog)** (`local.tsunyxdialog`), una ventana flotante de tamaño
+  fijo (1490×990 píxeles físicos) con borde propio, en vez de pantalla completa, para
+  quien prefiera algo más parecido a una ventana emergente clásica. El borde está
+  dibujado en QML (con el color de acento del esquema de colores activo) y no es una
+  decoración de ventana real: `PlasmaCore.Dialog`, sobre el que está hecha esta
+  variante, no puede recibir decoración de KWin.
+
+## Funciones
+
+- Cuadrícula de apps a pantalla completa y por páginas: se pasa de página deslizando
+  en el panel táctil, con la rueda, con las flechas o con los puntos de página. En la
+  configuración se puede cambiar por una sola lista que se desplaza.
+- Búsqueda en vivo a medida que escribes, sin tener que hacer clic en un campo antes.
+  Los resultados se agrupan por categoría (Aplicaciones, Archivos, Marcadores,
+  Pestañas del navegador…), igual que en KRunner.
+- Comandos de terminal, como en Tsunyx Search (más abajo): si KRunner reconoce el
+  texto como un comando, primero aparece «Ejecutar en la terminal» (salvo que el
+  nombre de algún resultado empiece igual que lo escrito), que lo corre en una
+  terminal que queda abierta (`terminalCommand`, por defecto `konsole`).
+- Calculadora (`2+2` y Enter deja `2+2=4`) y temporizadores (`5m`, `1h 30m té`,
+  `temporizador 10 pizza`), con `uzunyx-timer`.
+- Todo se maneja con el teclado, también entre páginas y entre secciones de
+  resultados.
+- Menú del clic derecho en cualquier icono: agregar o quitar de favoritos, fijar la
+  app en el gestor de tareas del panel y las acciones propias de cada app.
+- Animación al abrir y cerrar: los iconos salen volando del botón del panel en una ola
+  (y vuelven al cerrar), mientras el fondo oscurecido y desenfocado aparece y se
+  desvanece.
+- Se cierra solo al perder el foco.
+- Se pueden configurar el icono del panel, el tamaño de los iconos de la cuadrícula y
+  si la cuadrícula va por páginas o como lista (en Tsunyx Launcher también cuánto se
+  oscurece el fondo; no aplica a la variante Dialog, que no tiene fondo a pantalla
+  completa).
+- Interfaz en español (en inglés en los demás idiomas).
+
+## Requisitos
+
+- KDE Plasma 6.0 o superior y Qt 6.8 o superior, en Wayland o X11.
+- `msgfmt` (del paquete `gettext`), solo para compilar una vez el catálogo de
+  traducción al español.
+- `kpackagetool6` y `kwriteconfig6`, que vienen con cualquier Plasma 6, para instalar
+  el script de KWin que acompaña a cada variante (ver más abajo).
+
+## Instalar
 
 ```sh
 git clone https://github.com/antarest47/tsunyx-launcher.git
@@ -60,70 +81,70 @@ cd tsunyx-launcher
 ./install.sh
 ```
 
-This installs **both** variants: symlinks each plasmoid into
-`~/.local/share/plasma/plasmoids/`, compiles and installs each Spanish
-translation catalog, and installs + enables each one's companion KWin
-script. Both scripts are necessary because neither launcher's window is a
-normal, fully-decorated app window that KWin would handle taskbar/pager
-visibility for by itself:
+Esto instala **las dos** variantes: enlaza cada plasmoide en
+`~/.local/share/plasma/plasmoids/`, compila e instala el catálogo en español de cada
+una, e instala y activa el script de KWin de cada una. Los dos scripts hacen falta
+porque la ventana de ninguno de los dos lanzadores es una ventana normal de app, con
+decoración, a la que KWin le maneje solo la barra de tareas y el paginador:
 
-- Tsunyx Launcher's window never goes into exclusive fullscreen (that's
-  what would otherwise cover the panel) — without its script, it would show
-  up as a regular running app in the taskbar.
-- Tsunyx Launcher (Dialog) is a `PlasmaCore.Dialog`, which can't position or
-  correctly size itself on Wayland, and doesn't hide itself from the
-  taskbar the way a fullscreen window can — its script centers it, sizes it
-  to the correct physical pixels for your display's scale factor, and hides
-  it from the taskbar/pager/switcher.
+- La ventana de Tsunyx Launcher nunca pasa a pantalla completa exclusiva (eso es lo
+  que taparía el panel); sin su script, aparecería en la barra de tareas como una app
+  abierta más.
+- Tsunyx Launcher (Dialog) es un `PlasmaCore.Dialog`, que en Wayland no puede
+  ubicarse ni darse bien el tamaño, y que no se oculta de la barra de tareas como
+  puede hacerlo una ventana a pantalla completa. Su script lo centra, le da el tamaño
+  en píxeles físicos según la escala de tu pantalla y lo oculta de la barra de
+  tareas, el paginador y el selector de ventanas.
 
-After running the script, add each widget to a panel by hand: right-click
-the panel → **Add Widgets…** → search for "Tsunyx Launcher" (both variants
-show up separately).
+Después de correr el script, agrega cada widget a un panel a mano: clic derecho en el
+panel → **Añadir elementos gráficos…** → busca «Tsunyx Launcher» (las dos variantes
+aparecen por separado).
 
-Only want one variant? Just don't add its widget to a panel — installing
-both is harmless (a few extra symlinked files and a KWin script that never
-matches any window until you actually add and open that launcher).
+¿Solo quieres una variante? No agregues la otra al panel. Tener las dos instaladas no
+molesta: son unos pocos archivos enlazados y un script de KWin que no actúa sobre
+ninguna ventana hasta que agregas y abres ese lanzador.
 
+## Tsunyx Search (cuadro de búsqueda en el panel)
 
-## Tsunyx Search (panel search box)
+`local.tsunyxsearch` es otro widget del panel: un cuadro de texto (con una lupa, como
+la búsqueda de Tsunyx Launcher) que va en el propio panel, al lado del botón del
+lanzador. Al escribir busca apps, archivos, marcadores, pestañas del navegador y más
+con KRunner, igual que la búsqueda de Tsunyx Launcher, y muestra los resultados en una
+ventana sobre el cuadro, alineada con su borde izquierdo (flechas para elegir, Enter
+para abrir, Escape para borrar).
 
-`local.tsunyxsearch` is a separate panel widget: a text box (with a magnifier,
-like Tsunyx Launcher's search pill) that sits in the panel itself (add it next to the launcher button). Typing searches apps,
-files, bookmarks, browser tabs and so on through KRunner, the same way Tsunyx
-Launcher's search does, and shows the results in a popup above the box,
-aligned with its left edge (arrow keys to pick, Enter to open, Escape to
-clear).
+Si el buscador de comandos de KRunner reconoce el texto como un comando de terminal,
+Enter lo ejecuta en Konsole con zsh desde la carpeta personal (con bash si no está
+zsh; desde la 1.13, con el `ZDOTDIR` de Uzunyx si la terminal no lo trae), y la
+terminal queda abierta en ese shell. El comando aparece primero salvo que el nombre de
+algún resultado empiece igual que lo escrito: `fire` abre Firefox y `ls -la` se
+ejecuta en la terminal. La terminal y el ancho del cuadro se pueden configurar
+(`terminalCommand`, `fieldWidth`). Si el panel llega al 90 % del ancho de la pantalla,
+el cuadro pasa a ser un botón con lupa.
 
-If KRunner's command line runner recognizes the text as a terminal command,
-Enter runs it in Konsole with zsh from the home folder (bash if zsh is
-missing; since 1.13, with Uzunyx's `ZDOTDIR` if the terminal didn't set it),
-and the terminal stays open afterwards in that shell. The command goes first unless some result's
-name starts with what was typed, so `fire` opens Firefox while `ls -la` runs in
-a terminal. The terminal and the box width are configurable (`terminalCommand`,
-`fieldWidth`).
+## Paquete de Debian (para todo el sistema)
 
-## Debian package (system-wide)
+`make deb` arma `build/tsunyx-launcher_<versión>_all.deb` con el lanzador original (a
+pantalla completa) y Tsunyx Search: el plasmoide en
+`/usr/share/plasma/plasmoids/local.tsunyxlauncher`, el catálogo en español compilado
+en `/usr/share/locale/es/LC_MESSAGES/` y el script de KWin que lo saca de la barra de
+tareas en `/usr/share/kwin-wayland/scripts/` (activado por defecto). Para armarlo hace
+falta `msgfmt` (paquete `gettext`). `install.sh` sigue siendo la instalación de
+desarrollo, para un solo usuario.
 
-`make deb` builds `build/tsunyx-launcher_<version>_all.deb` with the original
-(fullscreen) launcher and Tsunyx Search: the plasmoid in
-`/usr/share/plasma/plasmoids/local.tsunyxlauncher`, the compiled Spanish
-catalog in `/usr/share/locale/es/LC_MESSAGES/`, and the skip-taskbar KWin
-script in `/usr/share/kwin-wayland/scripts/` (enabled by default). Needs
-`msgfmt` (package `gettext`) to build. `install.sh` stays as the per-user
-development install.
+## Configurar
 
-## Configuring
+Clic derecho en cualquiera de los dos botones del panel → **Configurar Tsunyx
+Launcher…**:
 
-Right-click either panel button → **Configure Tsunyx Launcher…**:
+- **Icono del panel**: cualquier icono del tema del sistema.
+- **Tamaño de los iconos** de la cuadrícula.
+- **Oscurecer el fondo**: opacidad de la capa oscura detrás de la cuadrícula (solo
+  Tsunyx Launcher).
+- **Disposición**: cuadrícula por páginas (por defecto) o lista que se desplaza.
+- **Puntos de página**: mostrar u ocultar el indicador de página (solo por páginas).
 
-- **Panel icon** — pick any icon from the system theme.
-- **Icon size** — size of the app icons in the grid.
-- **Background dim** — opacity of the dark overlay behind the grid
-  (Tsunyx Launcher only).
-- **Layout** — paginated grid (default) or a continuously-scrolling list.
-- **Page dots** — show/hide the page indicator (paginated mode only).
-
-## Uninstalling
+## Desinstalar
 
 Tsunyx Launcher:
 
@@ -145,9 +166,8 @@ kwriteconfig6 --file kwinrc --group Plugins --key tsunyxdialogcenterEnabled --de
 qdbus6 org.kde.KWin /KWin reconfigure
 ```
 
-Then remove the corresponding widget(s) from the panel via their right-click
-menu.
+Después quita los widgets del panel desde su menú del clic derecho.
 
-## License
+## Licencia
 
 GPL-3.0-or-later.
